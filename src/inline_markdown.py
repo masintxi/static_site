@@ -41,7 +41,6 @@ def split_nodes_image(old_nodes):
                 pattern = r"(!\[.*?\]\(.*?\))"
                 image_index = 0
                 for subnode in re.split(pattern, node.text):
-                    print(subnode)
                     if subnode != "":
                         if re.match(pattern, subnode):
                             new_nodes.append(TextNode(
@@ -88,7 +87,6 @@ def text_to_textnodes(text):
     textnodes = split_nodes_delimiter(textnodes, "**", TextType.BOLD)
     textnodes = split_nodes_delimiter(textnodes, "*", TextType.ITALIC)
     textnodes = split_nodes_delimiter(textnodes, "`", TextType.CODE)
-    
     textnodes = split_nodes_link(textnodes)
     textnodes = split_nodes_image(textnodes)
     return textnodes
