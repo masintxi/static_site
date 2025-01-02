@@ -45,7 +45,8 @@ def text_to_children(text):
     return child_nodes
 
 def block_to_html(block, tag):
-    block = " ".join(block.split("\n"))
+    if tag != "code":
+        block = " ".join(block.split("\n"))
     children = text_to_children(block)
     return ParentNode(tag, children)
 

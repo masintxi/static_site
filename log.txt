@@ -1,6 +1,18 @@
+deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/index.md.html
 deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images/rivendell.png
+deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/majesty/index.md.html
 deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/index.css
 deleting directory --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images
+deleting directory --> /home/masintxi/workspace/github.com/masintxi/static_site/public/majesty
 copying directory --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images
 copying file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images/rivendell.png
 copying file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/index.css
+Generating page from /home/masintxi/workspace/github.com/masintxi/static_site/content/index.md to /home/masintxi/workspace/github.com/masintxi/static_site/public/index.html using /home/masintxi/workspace/github.com/masintxi/static_site/template.html
+reading the markdown file: /home/masintxi/workspace/github.com/masintxi/static_site/content/index.md
+reading the template file: /home/masintxi/workspace/github.com/masintxi/static_site/template.html
+writing the HTML: /home/masintxi/workspace/github.com/masintxi/static_site/public/index.html
+Created new directory at --> /home/masintxi/workspace/github.com/masintxi/static_site/public/majesty
+Generating page from /home/masintxi/workspace/github.com/masintxi/static_site/content/majesty/index.md to /home/masintxi/workspace/github.com/masintxi/static_site/public/majesty/index.html using /home/masintxi/workspace/github.com/masintxi/static_site/template.html
+reading the markdown file: /home/masintxi/workspace/github.com/masintxi/static_site/content/majesty/index.md
+reading the template file: /home/masintxi/workspace/github.com/masintxi/static_site/template.html
+writing the HTML: /home/masintxi/workspace/github.com/masintxi/static_site/public/majesty/index.html
