@@ -1,44 +1,63 @@
-from textnode import TextNode, TextType
-from htmlnode import HTMLNode
-from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes
-import re
+import os
+import shutil
+
+def site_prepare(path):
+    pub_dir = os.path.join(os.getcwd(), "public")
+    stat_dir = os.path.join(os.getcwd(), "static")
+    log_dir = os.path.join(os.getcwd(), "log.txt")
+    if path == os.getcwd():
+        path = pub_dir
+        if os.path.exists(log_dir):
+            os.remove(log_dir)
+            with open(log_dir, "x") as log:
+                pass
+        if not os.path.exists(pub_dir):
+            os.mkdir(pub_dir)
+            with open(log_dir, "a") as log:
+                log.write(f"Created public directory at --> {pub_dir}\n")
+
+    delete_files(pub_dir)
+    delete_folders(pub_dir)
+    copy_files(stat_dir, pub_dir)
+
+def delete_files(path):
+    log_dir = os.path.join(os.getcwd(), "log.txt")
+    for item in os.listdir(path):
+        item_path = path + "/" + item
+        if os.path.isfile(item_path):
+            os.remove(item_path)
+            with open(log_dir, "a") as log:
+                log.write(f"deleting file --> {item_path}\n")
+        else:
+            delete_files(item_path)
+
+def delete_folders(path):
+    log_dir = os.path.join(os.getcwd(), "log.txt")
+    for item in os.listdir(path):
+        item_path = os.path.join(path, item)
+        if len(os.listdir(item_path)) == 0:
+            os.rmdir(item_path)
+            with open(log_dir, "a") as log:
+                log.write(f"deleting directory --> {item_path}\n")
+        else:
+            delete_folders(item_path)
+
+def copy_files(path, to_path):
+    log_dir = os.path.join(os.getcwd(), "log.txt")
+    for item in os.listdir(path):
+        item_path = os.path.join(path, item)
+        item_to_path = os.path.join(to_path, item)
+        if os.path.isfile(item_path):
+            shutil.copy(item_path, item_to_path)
+            with open(log_dir, "a") as log:
+                log.write(f"copying file --> {item_to_path}\n")
+        else:
+            os.mkdir(item_to_path)
+            with open(log_dir, "a") as log:
+                log.write(f"copying directory --> {item_to_path}\n")
+            copy_files(item_path, item_to_path)
 
 def main():
-    # obj = TextNode("This is a text node", TextType.BOLD, "https://www.boot.dev")
-    # print(obj)
-    # obj = HTMLNode("p", "this is the value", ["potato", "apple", "kiwi"], {"class": "greeting", "href": "https://boot.dev"})
-    # print(obj)
-    # node = TextNode("This is text with a `code block` word", TextType.TEXT)
-    # print(split_nodes_delimiter([node], "`", TextType.CODE))
-    # text = "**This** is text with a **bolded word** and **another**"
-    # text = "This ** has ** multiple ** bold ** sections"
-    # node = TextNode(text, TextType.TEXT)
-    # print(split_nodes_delimiter([node], "**", TextType.BOLD))
-    # image = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
-    # print(extract_markdown_images(image))
-    # link = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
-    # print(extract_markdown_links(link))
-    
-    # print(image.split(r"(!\[.*?\]\(.*?\))"))
-    # print(image)
-    # print(re.split(r"(!\[.*?\]\(.*?\))", image))
-
-    node = TextNode(
-        "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)",
-        TextType.TEXT,
-        )
-    print(split_nodes_image([node]))
-
-    node = TextNode(
-        "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)",
-        TextType.TEXT,
-        )
-    print(split_nodes_link([node]))
-    
-    text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
-    for i in text_to_textnodes(text):
-        print("*", i)
-    node = TextNode(text, TextType.TEXT)
-    print(split_nodes_image([node]))
+    site_prepare(os.getcwd())
 
 main()

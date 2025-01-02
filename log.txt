@@ -1,0 +1,6 @@
+deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images/rivendell.png
+deleting file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/index.css
+deleting directory --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images
+copying directory --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images
+copying file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/images/rivendell.png
+copying file --> /home/masintxi/workspace/github.com/masintxi/static_site/public/index.css
